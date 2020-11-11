@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Jennyfer Vicencio Arce">
+    <meta name="description" content="¡Descubre nuevos Pokémon en Jenny's Pokedex!">
+    <link rel="shortcut icon" href="./assets/img/pokeicon.png" type="image/x-icon">
+    <!-- links -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat+Subrayada&family=Montserrat:wght@300;400;500;700&&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <title>Jenny's Pokedex</title>
+  </head>
+    
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand navbar-dark"> 
+      <div class="collapse navbar-collapse" id="navbarsExample02">
+          <div class="navbar-nav mr-auto">
+              <a class="nav-link active position-relative" href="#Inicio"><i class="fas fa-home"></i> Inicio</a>
+              <a class="nav-link active position-relative" href="#Buscador"><i class="fas fa-search"></i> Buscador Pokemon</a>
+              <a class="nav-link active position-relative" href="#Estadisticas"><i class="fas fa-chart-bar"></i> Estadísticas Pokemon</a>
+              <a class="nav-link active position-relative" href="#PokeGaleria"><i class="fas fa-images"></i> Galería Espada y Escudo</a>
+              <a class="nav-link active position-relative" href="#Eevees"><i class="fas fa-dog"></i> Eevee evoluciones</a>
+          </div>
+          <form class="form-inline my-2 my-md-0"> </form>
+      </div>
+      <a href="#menu-toggle" id="menu-toggle" class="navbar-brand">
+        <span class="navbar-toggler-icon"></span>
+      </a> 
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation"> 
+        <span class="navbar-toggler-icon"></span> 
+      </button>
+    </nav>
+      <div id="wrapper" class="toggled">
+          <!-- Sidebar -->
+          <div id="sidebar-wrapper">
+              <div class="sidebar-brand logo">
+                  <a class="pl-2" href="/index"> Jenny's <span>Pokedex</span></a>
+              </div>
+              <ul class="sidebar-nav text-right">
+                  <li> <a class="px-3" target="_blank" href="https://www.pokemon.com/el/pokedex/" data-toggle="tooltip" data-placement="bottom" title="...y muuuucho mejor">Pokedex oficial</a> </li>
+                  <li> <a class="px-3" target="_blank" href="https://swordshield.pokemon.com/es-es/">Lo nuevo de Pokemon Escudo y Espada</a> </li>
+                  <li> <a class="px-3" target="_blank" href="https://www.pokemon.com/es/videojuegos-pokemon/todos-los-juegos-pokemon/">Juegos anteriores</a> </li>
+                  <li> <a class="px-3" target="_blank" href="https://jennyvicencio.github.io/DL-FEG4-2020/">Acerca de mí</a> </li>          
+                  <button class="pokebutton btn mt-3"> <a href="mailto:fervcnc@gmail.com">Contacto</a> </button>
+              </ul>
+          </div> <!------ /#sidebar-wrapper ------>
+
+        <div id="page-content-wrapper">
+          <div class="container-fluid">
+             <div class="yamper" data-toggle="tooltip" data-placement="left" title="¿Yamper?"><img src="./assets/img/pokemon_yamper.png" alt=""></div>
+
+  <!---------------------------------------------- Page Content ------------------------------------------------>
+
+        <!-- Buscador Pokemon -->
+        <section class="buscadorPokemon my-2" id="Buscador">
+          <h1>Buscador Pokemon</h1>
+          <p>Bienvenido al buscador de Pokemon.</p> 
+          <p>Aquí podrás buscar y encontrar a tu Pokemon con tan solo el nombre o el número de la Pokedex Nacional</p>
+          <p>Además puedes filtrar la búsqueda por generación que desees con el menú desplegable del buscador.</p>
+          <div class="input-pokemon">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" id="poke-input" placeholder="Ingresa un nombre o número de Pokémon" aria-label="Pokemon-name-number" aria-describedby="searchPokemon">
+              <select class="custom-select" id="inputGen" aria-label="select-gen">
+                <option selected>Cualquiera</option>
+                <option value="1">I (1-151)</option>
+                <option value="2">II (151-251)</option>
+                <option value="3">III (252-386)</option>
+                <option value="4">IV (387-493)</option>
+                <option value="5">V (494-649)</option>
+                <option value="6">VI (650-721)</option>
+                <option value="7">VII (722-809)</option>
+                <option value="8">VIII (810-893)</option>
+              </select>
+              <button class="pokebutton btn" type="button" id="searchPokemon">Buscar</button>
+            </div>
+          </div>
+          <div class="searchError alert alert-danger"></div>
+          <div class="pokemonCard">
+            <div class="pokemonCard__img">
+                <div class="pokemonCard__title">
+                    <div class="pokemonCard__title__number">N° </div>
+                    <div class="pokemonCard__title__name"></div>
+                </div>
+            </div>
+            <div class="pokemonCard__other">
+              <div class="pokemonCard__data"></div>
+              <button type="button" class="pokebutton btn my-3" id="pokeGallery" data-toggle="modal" data-target="#ModalGallery">Ver Galería</button>
+              <button type="button" class="pokebutton btn my-3" id="pokeAttacks" data-toggle="modal" data-target="#ModalAttacks">Ver Ataques</button>
+              <button type="button" class="pokebutton btn my-3" id="pokeBase">Ver Punto de base</button>
+            </div>
+
+          </div>
+            <!-- Chart de puntos base -->
+            <div id="BasePointChart" class="my-3" style="height: 400px; width: 100%;"></div>
+
+
+        </section>
+        
+        <!-- Estadísticas Pokemon -->
+        <section class="estadisticasPokemon my-2" id="Estadisticas">
+          <h1>Estadísticas Pokemon</h1>
+          <div class="my-3" id="chartContainer" style="height: 300px; width: 100%;"></div>
+          <div class="my-3" id="chartContainer2" style="height: 300px; width: 100%;"></div>
+          <div class="my-3" id="chartContainer3" style="height: 300px; width: 100%;"></div>
+        </section>
+    
+        <!-- Carrusel Pokemon Sword & Shield -->
+        <section class="carruselPokemon my-2" id="PokeGaleria">
+          <h1>Galería Pokémon Espada y Escudo</h1>
+          <p>Mira las mejores imágenes del nuevo juego de Pokémon.</p>
+
+          <div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-interval="1000">
+                <img src="./assets/img/Sword_Shield/adventure_screenshot1.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-interval="1000">
+                <img src="./assets/img/Sword_Shield/adventure_screenshot2.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-interval="1000">
+                <img src="./assets/img/Sword_Shield/CI_NSwitch_PokemonSwordShield_WildAreas_01.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-interval="1000">
+                <img src="./assets/img/Sword_Shield/CI_NSwitch_PokemonSwordShield_WildAreas_02.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-interval="1000">
+                <img src="./assets/img/Sword_Shield/CI_NSwitch_PokemonSwordShield_WildAreas_03.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-interval="1000">
+                <img src="./assets/img/Sword_Shield/CI_NSwitch_PokemonSwordShield_WildAreas_04.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-interval="1000">
+                <img src="./assets/img/Sword_Shield/CI_NSwitch_PokemonSwordShield_Dynamaxing_01_EN_image950w.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-interval="1000">
+                <img src="./assets/img/Sword_Shield/CI_NSwitch_PokemonSwordShield_Dynamaxing_02_image950w.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-interval="1000">
+                <img src="./assets/img/Sword_Shield/features_modes_gigantamaxing_screen3_image950w.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-interval="1000">
+                <img src="./assets/img/Sword_Shield/expansion_pass_scr1.jpg" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Siguiente</span>
+            </a>
+          </div>
+
+        </section>
+
+        <!-- Eevee evoluciones -->
+        <section class="whoEevee my-2" id="Eevees">
+          <h1>¿Qué Evolución de Eevee es tu favorito?</h1>
+          <p>Mira la carta de cada uno.</p>
+          <div id="cards">  
+  
+            <figure class="card card--normal">
+              <div class="card__image-container">
+                <img src="https://cdn.bulbagarden.net/upload/thumb/e/e2/133Eevee.png/1200px-133Eevee.png" alt="Eevee" class="card__image">   
+              </div>
+              
+              <figcaption class="card__caption">
+                <h1 class="card__name">Eevee</h1>
+            
+                <h3 class="card__type">
+                  normal
+                </h3>
+            
+                <table class="card__stats">
+                  <tbody><tr>
+                    <th>HP</th>
+                    <td>55</td>
+                  </tr>
+                  <tr>
+                    <th>Ataque</th>
+                    <td>55</td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Defensa</th>
+                    <td>50</td>
+                  </tr>
+            
+                  <tr>
+                    <th>Ataque especial</th>
+                    <td>45</td>
+                  </tr>
+                  <tr>
+                    <th>Defensa especial</th>
+                    <td>65</td>
+                  </tr>
+                  <tr>
+                    <th>Velocidad</th>  
+                    <td>55</td>
+                  </tr>
+                </tbody></table>
+                
+                <div class="card__abilities">
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad</span>
+                    Run Away
+                  </h4>
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad oculta</span>
+                    Anticipation
+                  </h4>
+                </div>
+              </figcaption>
+            </figure>
+            
+            <figure class="card card--water">
+              <div class="card__image-container">
+                <img src="https://cdn.bulbagarden.net/upload/thumb/f/fd/134Vaporeon.png/1200px-134Vaporeon.png" alt="Vaporeon" class="card__image">   
+              </div>
+              
+              <figcaption class="card__caption">
+                <h1 class="card__name">Vaporeon</h1>
+            
+                <h3 class="card__type">
+                  Agua
+                </h3>
+            
+                <table class="card__stats">
+                  <tbody><tr>
+                    <th>HP</th>
+                    <td>130</td>
+                  </tr>
+                  <tr>
+                    <th>Ataque</th>
+                    <td>65</td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Defensa</th>
+                    <td>60</td>
+                  </tr>
+            
+                  <tr>
+                    <th>Ataque especial</th>
+                    <td>110</td>
+                  </tr>
+                  <tr>
+                    <th>Defensa especial</th>
+                    <td>95</td>
+                  </tr>
+                  <tr>
+                    <th>Velocidad</th>  
+                    <td>65</td>
+                  </tr>
+                </tbody></table>
+                
+                <div class="card__abilities">
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad</span>
+                    Absorb
+                  </h4>
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad oculta</span>
+                    Hydration
+                  </h4>
+                </div>
+              </figcaption>
+            </figure>
+            
+            <figure class="card card--electric">
+              <div class="card__image-container">
+                <img src="https://cdn.bulbagarden.net/upload/thumb/b/bb/135Jolteon.png/1200px-135Jolteon.png" alt="Jolteon" class="card__image">   
+              </div>
+              
+              <figcaption class="card__caption">
+                <h1 class="card__name">Jolteon</h1>
+            
+                <h3 class="card__type">
+                  Eléctrico
+                </h3>
+            
+                <table class="card__stats">
+                  <tbody><tr>
+                    <th>HP</th>
+                    <td>65</td>
+                  </tr>
+                  <tr>
+                    <th>Ataque</th>
+                    <td>65</td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Defensa</th>
+                    <td>60</td>
+                  </tr>
+            
+                  <tr>
+                    <th>Ataque especial</th>
+                    <td>110</td>
+                  </tr>
+                  <tr>
+                    <th>Defensa especial</th>
+                    <td>95</td>
+                  </tr>
+                  <tr>
+                    <th>Velocidad</th>  
+                    <td>130</td>
+                  </tr>
+                </tbody></table>
+                
+                <div class="card__abilities">
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad</span>
+                    Volt Absorb
+                  </h4>
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad oculta</span>
+                    Quick Feet
+                  </h4>
+                </div>
+              </figcaption>
+            </figure>
+            
+            <figure class="card card--fire">
+              <div class="card__image-container">
+                <img src="https://cdn.bulbagarden.net/upload/thumb/d/dd/136Flareon.png/1200px-136Flareon.png" alt="Flareon" class="card__image">   
+              </div>
+              
+              <figcaption class="card__caption">
+                <h1 class="card__name">Flareon</h1>
+            
+                <h3 class="card__type">
+                  Fuego
+                </h3>
+            
+                <table class="card__stats">
+                  <tbody><tr>
+                    <th>HP</th>
+                    <td>65</td>
+                  </tr>
+                  <tr>
+                    <th>Ataque</th>
+                    <td>130</td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Defensa</th>
+                    <td>60</td>
+                  </tr>
+            
+                  <tr>
+                    <th>Ataque especial</th>
+                    <td>95</td>
+                  </tr>
+                  <tr>
+                    <th>Defensa especial</th>
+                    <td>110</td>
+                  </tr>
+                  <tr>
+                    <th>Velocidad</th>  
+                    <td>65</td>
+                  </tr>
+                </tbody></table>
+                
+                <div class="card__abilities">
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad</span>
+                    Flash Fire
+                  </h4>
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad oculta</span>
+                    Guts
+                  </h4>
+                </div>
+              </figcaption>
+            </figure>
+            
+            <figure class="card card--psychic">
+              <div class="card__image-container">
+                <img src="https://cdn.bulbagarden.net/upload/thumb/a/a7/196Espeon.png/1200px-196Espeon.png" alt="Espeon" class="card__image">   
+              </div>
+              
+              <figcaption class="card__caption">
+                <h1 class="card__name">Espeon</h1>
+            
+                <h3 class="card__type">
+                  Psíquico
+                </h3>
+            
+                <table class="card__stats">
+                  <tbody><tr>
+                    <th>HP</th>
+                    <td>65</td>
+                  </tr>
+                  <tr>
+                    <th>Ataque</th>
+                    <td>65</td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Defensa</th>
+                    <td>60</td>
+                  </tr>
+            
+                  <tr>
+                    <th>Ataque especial</th>
+                    <td>130</td>
+                  </tr>
+                  <tr>
+                    <th>Defensa especial</th>
+                    <td>95</td>
+                  </tr>
+                  <tr>
+                    <th>Velocidad</th>  
+                    <td>110</td>
+                  </tr>
+                </tbody></table>
+                
+                <div class="card__abilities">
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad</span>
+                    Synchronize
+                  </h4>
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad oculta</span>
+                    Magic Bounce
+                  </h4>
+                </div>
+              </figcaption>
+            </figure>
+            
+            <figure class="card card--dark">
+              <div class="card__image-container">
+                <img src="https://cdn.bulbagarden.net/upload/thumb/3/3d/197Umbreon.png/600px-197Umbreon.png" alt="Umbreon" class="card__image">   
+              </div>
+              
+              <figcaption class="card__caption">
+                <h1 class="card__name">Umbreon</h1>
+            
+                <h3 class="card__type">
+                  Oscuro
+                </h3>
+            
+                <table class="card__stats">
+                  <tbody><tr>
+                    <th>HP</th>
+                    <td>95</td>
+                  </tr>
+                  <tr>
+                    <th>Ataque</th>
+                    <td>65</td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Defensa</th>
+                    <td>110</td>
+                  </tr>
+            
+                  <tr>
+                    <th>Ataque especial</th>
+                    <td>60</td>
+                  </tr>
+                  <tr>
+                    <th>Defensa especial</th>
+                    <td>130</td>
+                  </tr>
+                  <tr>
+                    <th>Velocidad</th>  
+                    <td>65</td>
+                  </tr>
+                </tbody></table>
+                
+                <div class="card__abilities">
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad</span>
+                    Synchronize
+                  </h4>
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad oculta</span>
+                    Inner Focus
+                  </h4>
+                </div>
+              </figcaption>
+            </figure>
+            
+            <figure class="card card--grass">
+              <div class="card__image-container">
+                <img src="https://cdn.bulbagarden.net/upload/thumb/f/f5/470Leafeon.png/600px-470Leafeon.png" alt="Leafeon" class="card__image">   
+              </div>
+              
+              <figcaption class="card__caption">
+                <h1 class="card__name">Leafeon</h1>
+            
+                <h3 class="card__type">
+                  Hierba
+                </h3>
+            
+                <table class="card__stats">
+                  <tbody><tr>
+                    <th>HP</th>
+                    <td>65</td>
+                  </tr>
+                  <tr>
+                    <th>Ataque</th>
+                    <td>110</td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Defensa</th>
+                    <td>130</td>
+                  </tr>
+            
+                  <tr>
+                    <th>Ataque especial</th>
+                    <td>60</td>
+                  </tr>
+                  <tr>
+                    <th>Defensa especial</th>
+                    <td>65</td>
+                  </tr>
+                  <tr>
+                    <th>Velocidad</th>  
+                    <td>95</td>
+                  </tr>
+                </tbody></table>
+                
+                <div class="card__abilities">
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad</span>
+                    Leaf Guard
+                  </h4>
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad oculta</span>
+                    Chlorophyll
+                  </h4>
+                </div>
+              </figcaption>
+            </figure>
+            
+            <figure class="card card--ice">
+              <div class="card__image-container">
+                <img src="https://cdn.bulbagarden.net/upload/thumb/2/23/471Glaceon.png/600px-471Glaceon.png" alt="Glaceon" class="card__image">   
+              </div>
+              
+              <figcaption class="card__caption">
+                <h1 class="card__name">Glaceon</h1>
+            
+                <h3 class="card__type">
+                  Hielo
+                </h3>
+            
+                <table class="card__stats">
+                  <tbody><tr>
+                    <th>HP</th>
+                    <td>65</td>
+                  </tr>
+                  <tr>
+                    <th>Ataque</th>
+                    <td>60</td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Defensa</th>
+                    <td>110</td>
+                  </tr>
+            
+                  <tr>
+                    <th>Ataque especial</th>
+                    <td>130</td>
+                  </tr>
+                  <tr>
+                    <th>Defensa especial</th>
+                    <td>95</td>
+                  </tr>
+                  <tr>
+                    <th>Velocidad</th>  
+                    <td>65</td>
+                  </tr>
+                </tbody></table>
+                
+                <div class="card__abilities">
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad</span>
+                    Snow Cloak
+                  </h4>
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad oculta</span>
+                    Ice Body
+                  </h4>
+                </div>
+              </figcaption>
+            </figure>
+            
+            <figure class="card card--fairy">
+              <div class="card__image-container">
+                <img src="https://cdn.bulbagarden.net/upload/thumb/e/e8/700Sylveon.png/600px-700Sylveon.png" alt="Sylveon" class="card__image">   
+              </div>
+              
+              <figcaption class="card__caption">
+                <h1 class="card__name">Sylveon</h1>
+            
+                <h3 class="card__type">
+                  Hada
+                </h3>
+            
+                <table class="card__stats">
+                  <tbody><tr>
+                    <th>HP</th>
+                    <td>95</td>
+                  </tr>
+                  <tr>
+                    <th>Ataque</th>
+                    <td>65</td>
+                  </tr>
+                  
+                  <tr>
+                    <th>Defensa</th>
+                    <td>65</td>
+                  </tr>
+            
+                  <tr>
+                    <th>Ataque especial</th>
+                    <td>110</td>
+                  </tr>
+                  <tr>
+                    <th>Defensa especial</th>
+                    <td>130</td>
+                  </tr>
+                  <tr>
+                    <th>Velocidad</th>  
+                    <td>60</td>
+                  </tr>
+                </tbody></table>
+                
+                <div class="card__abilities">
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad</span>
+                    Cute Charm
+                  </h4>
+                  <h4 class="card__ability">
+                    <span class="card__label">Habilidad oculta</span>
+                    Pixilate
+                  </h4>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
+        </section>        
+
+        <span class="go-top"></span>
+
+          </div>
+        </div> <!-- /#page-content-wrapper -->
+
+      </div> <!------------------------ /#wrapper (el contenido termina aquí) -------------------------->
+   
+   <!-- Footer -->
+    <footer class="copyright"><i class="fa fa-star" aria-hidden="true"></i> © 2020 - Jennyfer Vicencio <i class="far fa-star" aria-hidden="true"></i> </footer>
+
+
+    <!-- Modals -->
+        
+    <!-- Modal Poke Gallery -->
+    <div class="modal fade" id="ModalGallery" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="GalleryLabel">Galeria</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Poke Attacks -->
+    <div class="modal fade" id="ModalAttacks" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="AttacksLabel">Ataques</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+        <!-- Optional JavaScript -->
+        <script id="card-template" type="text/x-handlebars-template"> 
+          <figure class="card card--{{type}}">
+            <div class="card__image-container">
+              <img src="{{imageAddress}}" alt="{{name}}" class="card__image">   
+            </div>
+            
+            <figcaption class="card__caption">
+              <h1 class="card__name">{{name}}</h1>
+          
+              <h3 class="card__type">e
+                {{type}}
+              </h3>
+          
+              <table class="card__stats">
+                <tr>
+                  <th>HP</th>
+                  <td>{{hp}}</td>
+                </tr>
+                <tr>
+                  <th>Ataque</th>
+                  <td>{{attack}}</td>
+                </tr>
+                
+                <tr>
+                  <th>Defensa</th>
+                  <td>{{defense}}</td>
+                </tr>
+          
+                <tr>
+                  <th>Ataque especial</th>
+                  <td>{{spAttack}}</td>
+                </tr>
+                <tr>
+                  <th>Defensa especial</th>
+                  <td>{{spDefense}}</td>
+                </tr>
+                <tr>
+                  <th>Velocidad</th>  
+                  <td>{{speed}}</td>
+                </tr>
+              </table>
+              
+              <div class="card__abilities">
+                <h4 class="card__ability">
+                  <span class="card__label">Habilidad</span>
+                  {{ability1}}
+                </h4>
+                <h4 class="card__ability">
+                  <span class="card__label">Habilidad oculta</span>
+                  {{ability2}}
+                </h4>
+              </div>
+            </figcaption>
+          </figure>
+        </script>
+        <script src="./assets/js/script.js"></script>  
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+        <script src="./assets/js/bootstrap.bundle.js"></script>
+        <script src="./assets/js/bootstrap.js"></script>
+  </body>
+</html>
