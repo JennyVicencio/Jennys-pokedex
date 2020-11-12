@@ -48,7 +48,7 @@ $('#searchPokemon').on('click',() => {  // al hacer click en botón Buscar...
                 var spritedefault = infoPokemon.sprites.other.dream_world.front_default;
                 console.log(spritedefault);
                 if (spritedefault === null) {
-                  var spritedefault = infoPokemon.sprites.other.front_default;
+                  var spritedefault = infoPokemon.sprites.front_default;
                   console.log(spritedefault);
                 }
                 console.log(spritedefault);
