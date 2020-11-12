@@ -45,11 +45,19 @@ $('#searchPokemon').on('click',() => {  // al hacer click en botón Buscar...
                 console.log(response);
                 let infoPokemon = response;
 
-                
+                var spritedefault = infoPokemon.sprites.other.dream_world.front_default;
+                console.log(spritedefault);
+                if (spritedefault === null) {
+                  var spritedefault = infoPokemon.sprites.other.front_default;
+                  console.log(spritedefault);
+                }
+                console.log(spritedefault);
+
+
                 // Busca la clase para inyectar en el html los datos del Pokemon dentro
                 $('.pokemonCard').html(`  
                 <div class="pokemonCard__img">
-                  <img src="${infoPokemon.sprites.other.dream_world.front_default}" alt="${infoPokemon.id}">
+                  <img src="${spritedefault}" alt="${infoPokemon.id}">
                       <div class="pokemonCard__title">
                           <div class="pokemonCard__title__number">N° ${infoPokemon.id}</div>
                           <div class="pokemonCard__title__name">${infoPokemon.name}</div>
